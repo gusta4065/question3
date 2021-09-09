@@ -1,30 +1,45 @@
-import React, {useState, createContext} from 'react';
-import SideBar from "./components/sidebar/index"
-import logo from './logo.svg';
+import React, { useState } from 'react';
+//import SideBar from "./components/sidebar/index"
 import './App.css';
+import './hooks/heap';
+import { HeapSort } from './hooks/heap';
 
 function App() {
-  [array, setArray] = useState('');
-  function handleCreateArray( array: string ){
-      heapArray: number[] = 
+  const [array, setArray] = useState<number[]>([]);
+  function handleCreateArray(input: string): Array<number> {
+    const nArray = input.split(' ').map(n => parseInt(n, 10));
+    return nArray;
   }
+  const heap = new HeapSort();
+
+  let sortA: Array<number> = [];
+
   return (
     <div className="App">
-      <form className="w3-container">
+      <div className="w3-sidebar w3-bar-block" /*style="width:25%"*/>
+        <form className="w3-container">
 
-      <label>Insira os valores</label>
+          <label>Insira os valores</label>
 
-       <input className="w3-input" type="textarea"
-        onChange={context => context.setArray(event.target.value)}
-        value= {array}
-      />
+          <input className="w3-input" type="textarea"
+          onChange={event => {setArray( handleCreateArray(event.target.value) ); }}
+          //value= {array}
+          />
 
-      {/*<button className="w3-button w3-round-xxlarge">and Rounder</button>*/}
+          <button className="w3-button w3-round-xxlarge" onClick={()=> { setArray(heap.sort(array))
+            sortA = array;
+          }} >and Rounder</button>
 
-      </form>  
+        </form>
+      </div>
+
       <main>
         <div>
-          Rodrigo Lima
+          {array.map(item => {
+            return (
+              <span>{item} </span>
+            );
+          })}
         </div>
       </main>
     </div>
