@@ -30,7 +30,7 @@ private swap(array: number[] ,i: number , max:number): void {
  		
  		if (largest !== i ){ // caso o maior indice tenha sido modificado 
  			this.swap(array, i, largest); // swapa os valores
- 			this.heapify(array, length, largest); // heapify (é o nome da função)
+ 			this.heapify(array, largest,length); // heapify (é o nome da função)
  		}
 
  		console.log(`array_heapificada(?) => ${array}`);
