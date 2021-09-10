@@ -8,7 +8,7 @@ function App() {
   const [input, setInput] = useState('');
   //const [array, setArray] = useState<number[]>([]);
   function handleCreateArray(input: string): Array<number> {
-    const nArray = input.split(' ').map(n => parseInt(n, 10));
+    const nArray = input.split(/[\s,]+/).map(n => parseInt(n, 10));
     return nArray;
   }
   const heap = new HeapSort();
@@ -24,14 +24,14 @@ function App() {
       <div className=" w3-bar-block" /*style="width:25%"*/>
         <form className="w3-container" onSubmit={submitSort}>
 
-          <label>Insira os valores</label>
+          <label>Insira os valores separados por espaço ou virgula</label>
 
           <input className="w3-input" type="textarea"
           onChange={event => setInput(event.target.value )}
           //value= {array}
           />
 
-          <button className="w3-button w3-round-xxlarge" type='submit' >and Rounder</button>
+          <button className="w3-button w3-round-xxlarge" type='submit' >ordena valores</button>
 
         </form>
       </div>
